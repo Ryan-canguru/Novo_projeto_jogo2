@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b3jbmerd2jam5"]
+
+[ext_resource type="Script" uid="uid://d25qnqbn0pvlg" path="res://portal.gd" id="1_0r486"]
+[ext_resource type="Texture2D" uid="uid://dlshhg2gxsd3l" path="res://objetos/portal/frame-1.png" id="2_ef3v5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grrij"]
+atlas = ExtResource("2_ef3v5")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bwqdy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grrij")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ef3v5"]
+radius = 17.0
+height = 112.0
+
+[node name="portal" type="Area2D" unique_id=1002786275]
+position = Vector2(3, 4)
+script = ExtResource("1_0r486")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1912126113]
+position = Vector2(-5.750003, 11.499994)
+scale = Vector2(0.46718755, 0.41562498)
+sprite_frames = SubResource("SpriteFrames_bwqdy")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1976979155]
+position = Vector2(-4, 13)
+shape = SubResource("CapsuleShape2D_ef3v5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
